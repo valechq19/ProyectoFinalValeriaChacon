@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Eliminar Producto";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Eliminar Producto</title>
+</head>
+<body>
+    <div class="container mt-4">
+
+        @if (ViewBag.Success != null)
+        {
+            <div style="color: green;">@ViewBag.Success</div>
+        }
+        else if (ViewBag.Error != null)
+        {
+            <div style="color: red;">@ViewBag.Error</div>
+        }
+
+        @using (Html.BeginForm("EliminarProducto", "Home", FormMethod.Post))
+        {
+            <div class="form-group row align-items-end">
+                <label for="codigoEli" class="col-sm-4 col-form-label">Código del Producto:</label>
+                <div class="col-sm-4">
+                    <input type="text" name="codigoEli" id="codigoEli" class="form-control" required style="width: 80%;" />
+                </div>
+                <div class="col-sm-4">
+                    <input type="submit" value="Eliminar" class="btn btn-danger" style="width: 100%;" />
+                </div>
+            </div>
+        }
+    </div>
+</body>
+
+</html>
+
+
+

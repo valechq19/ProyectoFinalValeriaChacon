@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "VerFacturas";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+@if (ViewBag.VerFacturas != null && ViewBag.VerFacturas.Count > 0)
+{
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h5>Detalles de la Factura</h5>
+                    </div>
+                    <div class="card-body">
+                        @if (ViewBag.Usuario != null)
+                        {
+                            <div class="alert alert-info text-center mb-4">
+                                <strong>Usuario:</strong> @ViewBag.Usuario
+                            </div>
+                        }
+
+                        @foreach (var factura in ViewBag.VerFacturas)
+                        {
+                            <div class="mb-3">
+                                <h6><strong>Código:</strong> @factura.Codigo</h6>
+                                <p><strong>Nombre:</strong> @factura.Nombre</p>
+                                <p><strong>Precio:</strong> @factura.Precio.ToString("C")</p> 
+                                <p><strong>Cantidad:</strong> @factura.Cantidad</p>
+                                <p><strong>Iva:</strong> @factura.Iva</p>
+                                <hr /> 
+                            </div>
+                        }
+
+                        <div class="mb-3 text-center">
+                            <strong>Total:</strong> @ViewBag.TotalTodo.ToString("C")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning text-center mt-4">
+        No hay facturas disponibles.
+    </div>
+}
+
+    

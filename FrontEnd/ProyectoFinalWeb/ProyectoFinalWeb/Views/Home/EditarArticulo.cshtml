@@ -1,0 +1,51 @@
+﻿@model ProyectoFinalWeb.Entities.ArticuloEnt
+@{
+    ViewBag.Title = "EditarArticulo";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5>Formulario de Edición</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("EditarArticulo", "Home", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group mb-3">
+                           
+                            @Html.Label("Código del Artículo")
+                            @Html.TextBox("codigoEdit", null, new { @class = "form-control", required = "required" })
+                        </div>
+
+                        <div class="form-group mb-3">
+                          
+                            @Html.Label("Nuevo Nombre")
+                            @Html.TextBox("nuevoNombre", null, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group mb-3">
+                            
+                            @Html.Label("Nuevo Precio")
+                            @Html.TextBox("nuevoPrecio", null, new { @class = "form-control", type = "number", step = "0.01", required = "required" })
+                        </div>
+
+                        <div class="text-center">
+                          
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

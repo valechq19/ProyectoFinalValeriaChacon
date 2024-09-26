@@ -1,0 +1,78 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewBag.Title = "Listado de Artículos";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center px-0">
+            <div class="row w-100 mx-0">
+                <div class="col-lg-12 mx-auto">
+                    <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                        <div class="d-flex mb-3">
+                            <a href="@Url.Action("AgregarArticulo", "Home")" class="btn btn-success me-2">Agregar Artículo</a>
+                            <a href="@Url.Action("AgregarProductoAFactura", "Home")" class="btn btn-success">Factura</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger">@ViewBag.Error</div>
+    }
+
+    @{
+        var articulos = ViewBag.Articulos as List<ProyectoFinalWeb.Entities.ArticuloEnt>;
+
+        if (articulos != null && articulos.Any())
+        {
+            <h4>Lista de Artículos</h4>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Iva</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var articulo in articulos)
+                    {
+                        <tr>
+                            <td>@articulo.Codigo</td>
+                            <td>@articulo.Nombre</td>
+                            <td>@articulo.Precio.ToString("C")</td>
+                            <td>@articulo.AplicaIVA</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-warning">No hay artículos disponibles.</div>
+        }
+    }
+    <div class="text-center mt-4">
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                @Html.Partial("EliminarArticulo")
+            </div>
+            <div class="col-auto">
+                <a href="@Url.Action("EditarArticulo", "Home")" class="btn btn-success btn-sm">Editar</a> <!-- Botón de Editar -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+
